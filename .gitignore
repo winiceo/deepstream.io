@@ -34,3 +34,7 @@ node_modules
 
 # IDE configuration
 .idea
+
+
+Dockerfile
+package.json
