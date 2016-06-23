@@ -38,11 +38,8 @@ RUN apt-get install -y deepstream.io
 EOF
 else
 	cat >>Dockerfile <<EOF
-RUN yum update
 RUN yum install -y wget
-RUN wget https://bintray.com/deepstreamio/rpm/rpm -O bintray-deepstreamio-rpm.repo
-RUN mv  bintray-deepstreamio-rpm.repo /etc/yum.repos.d/
-RUN yum update
+RUN wget https://bintray.com/deepstreamio/rpm/rpm -O /etc/yum.repos.d/bintray-deepstreamio-rpm.repo
 RUN yum install -y deepstream.io
 EOF
 fi
@@ -51,6 +48,7 @@ fi
 RUN deepstream --version > version
 RUN cat version
 RUN grep -q ^$VERSION version
+RUN deepstream install connector publishingtest
 EOF
 
 
